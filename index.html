@@ -11,6 +11,8 @@
         :root {
             --bg: #080808;
             --gold: #C5A059;
+            --gold-primary: #C5A059;
+            --gold-light: #e8d5a3;
             --gold-grad: linear-gradient(90deg, #bf953f, #aa771c);
             --text: #EAEAEA;
             --muted: #999;
@@ -40,11 +42,62 @@
         .pulse { animation:pulse 2s infinite; }
         @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(197,160,89,0.7)} 70%{box-shadow:0 0 0 30px rgba(197,160,89,0)} 100%{box-shadow:0 0 0 0 rgba(197,160,89,0)} }
 
-        .hero { min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; background:radial-gradient(circle at center,#1a1025,#000); padding:40px 0; }
+        /* ========== HERO ATUALIZADO ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Vídeo de fundo */
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: -2;
+            object-fit: cover;
+        }
+
+        /* Overlay escuro sobre o vídeo */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: -1;
+        }
+
+        /* Título principal com nova fonte */
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2rem, 8vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
         .hero-badge { border:1px solid var(--gold); padding:10px 25px; font-size:0.85rem; color:var(--gold); letter-spacing:4px; display:inline-block; margin-bottom:30px; }
         .section { padding:120px 0; }
 
-        /* SEÇÃO YAN SIMON - ATUALIZADA */
+        /* SEÇÃO YAN SIMON */
         .yan-section {
             padding:140px 0;
             background:#0b0b0b;
@@ -108,11 +161,19 @@
 </head>
 <body>
 
-    <!-- HERO -->
+    <!-- HERO COM VÍDEO DE FUNDO -->
     <section class="hero">
+        <!-- Vídeo de fundo -->
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1766082937/generated_video_-_2025-12-18T153500.905_uyoati.mp4" type="video/mp4">
+        </video>
+
         <div class="container">
             <div class="hero-badge">A Iniciação • Yan Simon</div>
-            <h1 style="font-size:4.2rem; margin:20px 0;">AKASHA</h1>
+            
+            <!-- Título com nova fonte -->
+            <h1 class="hero-title">AKASHA</h1>
+            
             <h2 style="font-size:2.4rem; margin:20px 0;">Domine sua <span class="gold">Assinatura Energética</span></h2>
             <p style="font-size:1.35rem; max-width:780px; margin:35px auto; color:#ccc;">
                 Videoaulas práticas e essenciais. A iniciação direta ao método Akáshico que desperta fascinação, magnetismo e prosperidade.
@@ -128,10 +189,9 @@
         </div>
     </section>
 
-    <!-- YAN SIMON - SEÇÃO COM FOTO CORRIGIDA -->
+    <!-- YAN SIMON -->
     <section class="yan-section">
         <div class="container yan-container">
-            <!-- FOTO ATUALIZADA -->
             <img src="https://i.imgur.com/RiilCud.jpeg" alt="Yan Simon" class="yan-photo">
 
             <div class="yan-text">
